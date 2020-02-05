@@ -20,5 +20,6 @@ typedef struct ball_s {
 
 ball_t *init_ball(sfVector2f pos, float gravity, float friction, sfColor color);
 void draw_ball(ball_t *ball, sfRenderWindow *window);
+void set_delta_ball_position(ball_t *ball, sfVector2f pos);
 
 #endif

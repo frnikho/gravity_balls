@@ -23,6 +23,11 @@ ball_t *init_ball(sfVector2f pos, float gravity, float friction, sfColor color)
     return (ball);
 }
 
+void set_delta_ball_position(ball_t *ball, sfVector2f pos)
+{
+    ball->d_pos = pos;
+}
+
 void add_ball_position(ball_t *ball, sfVector2f pos)
 {
     sfVector2f current_pos = sfCircleShape_getPosition(ball->shape);
@@ -36,9 +41,15 @@ static void update(ball_t *ball)
     float radius = sfCircleShape_getRadius(ball->shape);
     float x = ball->position.x;
     float y = ball->position.y;
+    float dx = ball->d_pos.x;
     float dy = ball->d_pos.y;
 
+    if (x + radius >= 1600 || x - radius <= 0) {
+        ball->d_pos.x = -dx * ball->friction;
+    }
     if (y + radius + dy > 800) {
+        //ball->d_pos.y = -dy;
+        ball->d_pos.x = dx * ball->friction;
         ball->d_pos.y = -dy * ball->friction;
     } else {
         ball->d_pos.y += ball->gravity;

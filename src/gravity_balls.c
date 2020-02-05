@@ -18,8 +18,12 @@ int init(game_t *game)
     for (int i = 0; i < game->ball_count; i++) {
         float x = (rand() % 1600);
         float y = (rand() % 800 - 50) + 50;
+        float dy = (rand() % 1) + 2;
+        float dx = (rand() % 6) - 3;
         sfVector2f pos = {x, y - 200};
+        sfVector2f d_pos = {dx, dy};
         game->balls[i] = init_ball(pos, game->gravity, game->friction, get_random_color());
+        set_delta_ball_position(game->balls[i], d_pos);
     }
 }
 
@@ -50,14 +54,15 @@ int loop(game_t *game)
 
 int main(int argc, char **argv)
 {
-    int ball_count;
-    if (argc > 1)
-        ball_count = atoi(argv[1]);
     srand(0);
     sfVector2f window = {1600, 800};
-    game_t *game = init_game("Gravity Balls", window, ball_count);
+    game_t *game = init_game("Gravity Balls", window, 1);
+    if (argc > 1)
+        game->ball_count = atof(argv[1]);
     if (argc > 2)
         game->gravity = atof(argv[2]);
+    if (argc > 3)
+        game->friction = atof(argv[3]);
     init(game);
     loop(game);
     dispose_game(game);
