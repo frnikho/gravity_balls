@@ -18,7 +18,7 @@ typedef struct ball_s {
     sfCircleShape *shape;
 } ball_t;
 
-ball_t *init_ball(sfVector2f pos, float gravity, float friction);
+ball_t *init_ball(sfVector2f pos, float gravity, float friction, sfColor color);
 void draw_ball(ball_t *ball, sfRenderWindow *window);
 
 #endif

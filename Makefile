@@ -3,7 +3,8 @@ NAME					=					gravity_balls
 
 SRC						=					src/gravity_balls.c				\
 											src/game.c						\
-											src/ball.c
+											src/ball.c						\
+											src/color.c
 
 OBJ						=					$(SRC:%.c=%.o)
 

@@ -8,18 +8,18 @@
 #include <stdlib.h>
 #include "ball.h"
 
-ball_t *init_ball(sfVector2f pos, float gravity, float friction)
+ball_t *init_ball(sfVector2f pos, float gravity, float friction, sfColor color)
 {
     ball_t *ball = malloc(sizeof(ball_t));
     sfVector2f d_pos = {0, 5};
     ball->position = pos;
     ball->d_pos = d_pos;
-    ball->gravity = 1;
-    ball->friction = 0.7;
+    ball->gravity = gravity;
+    ball->friction = friction;
     ball->shape = sfCircleShape_create();
     sfCircleShape_setPosition(ball->shape, pos);
     sfCircleShape_setRadius(ball->shape, 20);
-    sfCircleShape_setFillColor(ball->shape, sfWhite);
+    sfCircleShape_setFillColor(ball->shape, color);
     return (ball);
 }
 

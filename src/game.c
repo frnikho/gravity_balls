@@ -20,6 +20,8 @@ game_t *init_game(char const *title, sfVector2f win, int ball_count)
         game->ball_count = ball_count;
     }
     game->info = win;
+    game->gravity = 1;
+    game->friction = 0.92;
     game->window = sfRenderWindow_create(mode, title, sfClose, NULL);
     sfRenderWindow_setFramerateLimit(game->window, 60);
     return (game);
