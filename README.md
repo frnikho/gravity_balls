@@ -1,6 +1,6 @@
-#Gravity Balls
+# Gravity Balls
 ![release](https://img.shields.io/github/v/release/frnikho/gravity_balls?label=Release)
-###installation
+### installation
 you need to install the **csfml**
 
 `make re`
