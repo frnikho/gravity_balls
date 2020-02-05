@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "game.h"
 
-sfColor get_random_color()
+sfColor get_random_color(void)
 {
     sfColor color;
     color.r = (rand() % 255);

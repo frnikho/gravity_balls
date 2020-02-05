@@ -23,6 +23,6 @@ typedef struct game_s {
 
 game_t *init_game(char const *title, sfVector2f win, int ball_count);
 void dispose_game(game_t *game);
-sfColor get_random_color();
+sfColor get_random_color(void);
 
 #endif

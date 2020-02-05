@@ -10,20 +10,20 @@
 #include <SFML/Graphics.h>
 #include "game.h"
 
-int init(game_t *game)
+int init(game_t *g)
 {
     time_t t;
     srand((unsigned) time(&t));
-    game->balls = malloc(sizeof(ball_t) * game->ball_count);
-    for (int i = 0; i < game->ball_count; i++) {
+    g->balls = malloc(sizeof(ball_t) * g->ball_count);
+    for (int i = 0; i < g->ball_count; i++) {
         float x = (rand() % 1600);
         float y = (rand() % 800 - 50) + 50;
         float dy = (rand() % 1) + 2;
         float dx = (rand() % 6) - 3;
-        sfVector2f pos = {x, y - 200};
+        sfVector2f p = {x, y - 200};
         sfVector2f d_pos = {dx, dy};
-        game->balls[i] = init_ball(pos, game->gravity, game->friction, get_random_color());
-        set_delta_ball_position(game->balls[i], d_pos);
+        g->balls[i] = init_ball(p, g->gravity, g->friction, get_random_color());
+        set_delta_ball_position(g->balls[i], d_pos);
     }
 }
 
@@ -39,6 +39,7 @@ void render(game_t *game)
 {
     sfRenderWindow_clear(game->window, sfBlack);
     for (int i = 0; i < game->ball_count; i++) {
+        check_collision(game->balls, game->ball_count, game->balls[i]);
         draw_ball(game->balls[i], game->window);
     }
     sfRenderWindow_display(game->window);

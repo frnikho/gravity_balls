@@ -14,6 +14,7 @@ ball_t *init_ball(sfVector2f pos, float gravity, float friction, sfColor color)
     sfVector2f d_pos = {0, 5};
     ball->position = pos;
     ball->d_pos = d_pos;
+    ball->mass = 1;
     ball->gravity = gravity;
     ball->friction = friction;
     ball->shape = sfCircleShape_create();
@@ -48,7 +49,6 @@ static void update(ball_t *ball)
         ball->d_pos.x = -dx * ball->friction;
     }
     if (y + radius + dy > 800) {
-        //ball->d_pos.y = -dy;
         ball->d_pos.x = dx * ball->friction;
         ball->d_pos.y = -dy * ball->friction;
     } else {
